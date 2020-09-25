@@ -33,6 +33,7 @@ namespace CLCMinesweeperApp
                 url: "{Registration}",
                 defaults: new { controller = "Registration", action = "Index", id = UrlParameter.Optional }
             );
+      
 
         }
     }

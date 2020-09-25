@@ -18,7 +18,7 @@ namespace CLCMinesweeperApp.Controllers
 
         [HttpPost]
 
-        public ActionResult Register(Player player)
+        public ActionResult Registration(Player player)
         {
             UserService userService = new UserService();
            

@@ -13,7 +13,7 @@ namespace CLCMinesweeperApp.Services.Data
         {
 
             string connectionString = "Server =.; Database = minesweeperApp; Trusted_Connection = True";
-            string query = @"select rtrim(USERNAME) from dbo.Player where USERNAME = " + user.userName;
+            string query = @"select rtrim(USERNAME), rtrim(PASSWORD) from dbo.Player where USERNAME = " + "'" + user.userName + "'";
             bool results = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -26,8 +26,7 @@ namespace CLCMinesweeperApp.Services.Data
                     {
                         while (reader.Read())
                         {
-
-                            if (reader.GetString(7).Equals(user.userName))
+                            if (reader.GetString(0).Equals(user.userName) && reader.GetString(1).Equals(user.password))
                             {
                                 results = true;
                             }
