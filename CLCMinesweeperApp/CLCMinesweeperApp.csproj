@@ -98,6 +98,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Planning and Design\Week 1\CST-247-RS-NAP-ProjectStatusDesignReport - mSievers.docx" />
+    <Content Include="Planning and Design\Week 1\CST-247-RS-SprintBackLog-mSievers.xlsx" />
+    <Content Include="Planning and Design\Week 1\CST-247-RS-SprintBurnDown - mSievers.xlsx" />
+    <Content Include="Planning and Design\Week 1\CST-247-RS-SprintProductLog - mSievers.xlsx" />
+    <Content Include="Planning and Design\Week 1\Team evaluation W1.docx" />
+    <Content Include="Planning and Design\Week 2\CST-247-RS-NAP-ProjectStatusDesignReport - W2.docx" />
+    <Content Include="Planning and Design\Week 2\CST-247-RS-SprintBackLog-W2.xlsx" />
+    <Content Include="Planning and Design\Week 2\CST-247-RS-SprintBurnDown - W2.xlsx" />
+    <Content Include="Planning and Design\Week 2\CST-247-RS-SprintProductLog.xlsx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
