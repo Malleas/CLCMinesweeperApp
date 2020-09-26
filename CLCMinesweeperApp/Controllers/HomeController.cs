@@ -29,5 +29,10 @@ namespace CLCMinesweeperApp.Controllers
         {
             return View("Login");
         }
+
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
     }
 }
