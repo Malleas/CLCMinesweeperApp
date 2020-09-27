@@ -63,149 +63,56 @@
             <h3 align="center" style="font-family:Impact">Player Registration</h3>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+            <div>
+                <label for="firstName" align="center"><b>First Name:</b></label>
+                <div>
                     @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.lastname, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+            <div>
+                <label for="lastname" align="center"><b>Last Name:</b></label>
+                <div>
                     @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+            <div>
+                <label for="gender" align="center"><b>Gender:</b></label>
+                <div>
                     @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <b>Please select your gender:</b>
-            <br><br />
-                <select name="gender" id="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-
-                    <br>
-                    <br />
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="age"><b>Age:</b></label>
-                        <br><br />
-                        <input type="number" id="age" name="age" min="1" max="100" required>
-                        <br><br />
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <label for="state"><b>Choose your state:</b></label>
-                    <br>
-                    <br />
-
-                    <select name="state" id="state" required>
-                        <option value="AL">AL</option>
-                        <option value="AK">AK</option>
-                        <option value="AR">AR</option>
-                        <option value="AZ">AZ</option>
-                        <option value="CA">CA</option>
-                        <option value="CO">CO</option>
-                        <option value="CT">CT</option>
-                        <option value="DC">DC</option>
-                        <option value="DE">DE</option>
-                        <option value="FL">FL</option>
-                        <option value="GA">GA</option>
-                        <option value="HI">HI</option>
-                        <option value="IA">IA</option>
-                        <option value="ID">ID</option>
-                        <option value="IL">IL</option>
-                        <option value="IN">IN</option>
-                        <option value="KS">KS</option>
-                        <option value="KY">KY</option>
-                        <option value="LA">LA</option>
-                        <option value="MA">MA</option>
-                        <option value="MD">MD</option>
-                        <option value="ME">ME</option>
-                        <option value="MI">MI</option>
-                        <option value="MN">MN</option>
-                        <option value="MO">MO</option>
-                        <option value="MS">MS</option>
-                        <option value="MT">MT</option>
-                        <option value="NC">NC</option>
-                        <option value="NE">NE</option>
-                        <option value="NH">NH</option>
-                        <option value="NJ">NJ</option>
-                        <option value="NM">NM</option>
-                        <option value="NV">NV</option>
-                        <option value="NY">NY</option>
-                        <option value="ND">ND</option>
-                        <option value="OH">OH</option>
-                        <option value="OK">OK</option>
-                        <option value="OR">OR</option>
-                        <option value="PA">PA</option>
-                        <option value="RI">RI</option>
-                        <option value="SC">SC</option>
-                        <option value="SD">SD</option>
-                        <option value="TN">TN</option>
-                        <option value="TX">TX</option>
-                        <option value="UT">UT</option>
-                        <option value="VT">VT</option>
-                        <option value="VA">VA</option>
-                        <option value="WA">WA</option>
-                        <option value="WI">WI</option>
-                        <option value="WV">WV</option>
-                        <option value="WY">WY</option>
-                    </select>
-                    <br>
-                    <br />
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.emailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                    <div>
+                        <label for="emailAddress" align="center"><b>Email:</b></label>
+                        <div>
                             @Html.EditorFor(model => model.emailAddress, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.emailAddress, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                    <div >
+                        <label for="userName" align="center"><b>Username:</b></label>
+                        <div>
                             @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                    <div >
+                        <label for="password" align="center"><b>Password:</b></label>
+                        <div>
                             @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div>
                             <input type="submit" value="Register" class="btn btn-default" />
                         </div>
                     </div>
