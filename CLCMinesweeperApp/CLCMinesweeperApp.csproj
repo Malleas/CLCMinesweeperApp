@@ -155,6 +155,7 @@
     <Content Include="Views\Registration\RegistrationComplete.cshtml" />
     <Content Include="Views\Registration\RegistrationFailed.cshtml" />
     <Content Include="Views\GameBoard\GameBoard.cshtml" />
+    <Content Include="Views\GameBoard\Difficulty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

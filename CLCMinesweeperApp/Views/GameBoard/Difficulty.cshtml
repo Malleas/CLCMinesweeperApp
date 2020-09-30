@@ -1,0 +1,28 @@
+﻿@model CLCMinesweeperApp.Models.Board
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div align="center">
+        @using (Html.BeginForm("DifficultyClick", "GameBoard", FormMethod.Post))
+        {
+            <button type="submit" name="difficulty" value="1" >Easy</button><br />
+           
+            <button type="radio"  name="difficulty" value="2">Moderate</button><br />
+          
+            <button type="radio"  name="difficulty" value="3">Hard</button>
+            
+        }
+
+    </div>
+</body>
+</html>

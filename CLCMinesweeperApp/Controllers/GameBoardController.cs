@@ -10,13 +10,35 @@ namespace CLCMinesweeperApp.Controllers
     public class GameBoardController : Controller
     {
         static private int size = 12;
-        static private int difficulty = 5;
+        static private int difficulty = Board.Difficulty;
         static private Board board = new Board(size, difficulty);
         // GET: GameBoard
         public ActionResult Index()
         {
+
+            return View("Difficulty");
+        }
+
+        [HttpPost]
+
+        public ActionResult DifficultyClick(string difficulty)
+        {
+            if (difficulty.Equals("1"))
+            {
+                Board.Difficulty = 33;
+
+            }
+            else if (difficulty.Equals("2"))
+            {
+                Board.Difficulty = 66;
+
+            }
+            else
+            {
+                Board.Difficulty = 99;
+
+            }
             SetGameBoard();
-            
             return View("GameBoard", board);
         }
 
@@ -24,6 +46,7 @@ namespace CLCMinesweeperApp.Controllers
 
         public ActionResult OnClick(string button)
         {
+            
             string[] strArr = button.Split('|');
             int row = int.Parse(strArr[0]);
             int col = int.Parse(strArr[1]);
@@ -60,7 +83,7 @@ namespace CLCMinesweeperApp.Controllers
                 }
             }
 
-            SetupLiveNeighbors(difficulty);
+            SetupLiveNeighbors(Board.Difficulty);
 
             foreach (var cell in board.Grid)
             {

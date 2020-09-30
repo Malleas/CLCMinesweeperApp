@@ -13,19 +13,25 @@
             .button {
                 background-color: lightblue;
                 border: none;
-                padding: 15px 15px;
+                width:50px;
+                height: 50px;
                 text-align: center;
+                font-weight: bold;
+                font-size: 16px;
                 margin: 4px 2px
+                
             }
             .image{
-                display:block
+                width: 30px;
+                height: 30px
+                
             }
         </style>
     </head>
     <body>
-        <div align="center">
+        <div align="center" onmousedown="WhichButton(event)">
             <table cellpadding="0" cellspacing="0" width="12" border="0">
-
+              
                 @{
 
 
@@ -35,21 +41,28 @@
                             @for (int j = 0; j < 12; j++)
                             {
 
-                            <td>
-                                @using (Html.BeginForm("OnClick", "GameBoard", FormMethod.Post))
-                                {
-                                    <button class="button" type="submit" name="button" value="@Model.Grid[i, j].Row.ToString()|@Model.Grid[i, j].Column.ToString()">
-                                        @if (Model.Grid[i, j].Visited && Model.Grid[i, j].Live)
-                                        {
-                                            <img class="image" src="~/Images/minesweeper bomb.png" />
-                                        }else if (Model.Grid[i,j].Visited)
-                                        {
-                                            <button type="button">@Model.Grid[i,j].Neighbors.ToString()</button>
-                                        }
-                                    </button>
-                                }
+                                <td>
+                                    @using (Html.BeginForm("OnClick", "GameBoard", FormMethod.Post))
+                                    {
+                                        
+                                        <button class="button" align="center" type="submit" name="button" value="@Model.Grid[i, j].Row.ToString()|@Model.Grid[i, j].Column.ToString()">
+                                            @if (Model.Grid[i, j].Visited && Model.Grid[i, j].Live)
+                                            {
+                                                <img class="image" align="middle" src="~/Images/minesweeper bomb.png" />
+                                            }
+                                            else if (Model.Grid[i, j].Visited)
+                                            {
+                                                if (Model.Grid[i, j].Neighbors > 0)
+                                                {
+                                                    @Model.Grid[i, j].Neighbors.ToString();
+                                                }
 
-                            </td>
+
+                                            }
+                                        </button>
+                                    }
+
+                                </td>
 
 
                             }
