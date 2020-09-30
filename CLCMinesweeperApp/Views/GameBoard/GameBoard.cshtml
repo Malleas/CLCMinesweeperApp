@@ -1,0 +1,69 @@
+﻿@model CLCMinesweeperApp.Models.Board
+
+@{
+    Layout = null;
+}
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>GameBoard</title>
+        <style>
+            .button {
+                background-color: lightblue;
+                border: none;
+                padding: 15px 15px;
+                text-align: center;
+                margin: 4px 2px
+            }
+            .image{
+                display:block
+            }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <table cellpadding="0" cellspacing="0" width="12" border="0">
+
+                @{
+
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 12; j++)
+                            {
+
+                            <td>
+                                @using (Html.BeginForm("OnClick", "GameBoard", FormMethod.Post))
+                                {
+                                    <button class="button" type="submit" name="button" value="@Model.Grid[i, j].Row.ToString()|@Model.Grid[i, j].Column.ToString()">
+                                        @if (Model.Grid[i, j].Visited && Model.Grid[i, j].Live)
+                                        {
+                                            <img class="image" src="~/Images/minesweeper bomb.png" />
+                                        }else if (Model.Grid[i,j].Visited)
+                                        {
+                                            <button type="button">@Model.Grid[i,j].Neighbors.ToString()</button>
+                                        }
+                                    </button>
+                                }
+
+                            </td>
+
+
+                            }
+                        </tr>
+
+                    }
+
+
+
+
+                }
+            </table>
+        </div>
+    </body>
+</html>
+
+
