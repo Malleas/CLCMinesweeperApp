@@ -21,11 +21,11 @@ namespace CLCMinesweeperApp.Services.Business
                 {
                    
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@firstName", player.firstName);
+                    command.Parameters.AddWithValue("@firstName",player.firstName);
                     command.Parameters.AddWithValue("@lastName", player.lastname);
-                    command.Parameters.AddWithValue("@gender", player.gender);
-                    command.Parameters.AddWithValue("@age", player.age);
-                    command.Parameters.AddWithValue("@state", player.state);
+                    command.Parameters.AddWithValue("@gender", player.gender.ToString());
+                    command.Parameters.AddWithValue("@age", int.Parse(player.age));
+                    command.Parameters.AddWithValue("@state", player.state.ToString());
                     command.Parameters.AddWithValue("@emailAddress", player.emailAddress);
                     command.Parameters.AddWithValue("@username", player.userName);
                     command.Parameters.AddWithValue("@password", player.password);
