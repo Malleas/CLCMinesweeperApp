@@ -111,6 +111,11 @@
     <Content Include="Planning and Design\Week 2\CST-247-RS-SprintProductLog.xlsx" />
     <Content Include="ClassDiagram1.cd" />
     <Content Include="Planning and Design\Week 2\Team evaluation W2-mSievers.docx" />
+    <Content Include="Planning and Design\Week 3\CST-247-RS-SprintProductLog.xlsx" />
+    <Content Include="Planning and Design\Week 3\Team evaluation W2-mSievers.docx" />
+    <Content Include="Planning and Design\Week 3\CST-247-RS-SprintBackLog-W3.xlsx" />
+    <Content Include="Planning and Design\Week 3\CST-247-RS-SprintBurnDown - W3.xlsx" />
+    <Content Include="Planning and Design\Week 3\CST-247-RS-NAP-ProjectStatusDesignReport - W3.docx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -150,7 +155,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\LoginPassed.cshtml" />
     <Content Include="Views\Login\LoginFailed.cshtml" />
     <Content Include="Views\Registration\RegistrationComplete.cshtml" />
     <Content Include="Views\Registration\RegistrationFailed.cshtml" />
