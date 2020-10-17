@@ -12,14 +12,18 @@ namespace CLCMinesweeperApp.Models
         public bool Visited { get; set; }
         public bool Live { get; set; }
         public int Neighbors { get; set; }
+        public bool Flag { get; set; }
 
-        public Cell(int row, int column, bool visited, bool live, int neighbors)
+
+        public Cell(int row, int column, bool visited, bool live, int neighbors, bool flag)
         {
             Row = row;
             Column = column;
             Visited = visited;
             Live = live;
             Neighbors = neighbors;
+            Flag = flag;
+
 
         }
 
@@ -30,6 +34,8 @@ namespace CLCMinesweeperApp.Models
             Visited = false;
             Live = false;
             Neighbors = 0;
+            Flag = false;
+
 
         }
 

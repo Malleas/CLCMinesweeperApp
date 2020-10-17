@@ -12,6 +12,8 @@ namespace CLCMinesweeperApp.Controllers
         static private int size = 12;
         static private int difficulty = Board.Difficulty;
         static private Board board = new Board(size, difficulty);
+        int liveCount = 0;
+        int visitedCount = 0;
         // GET: GameBoard
         public ActionResult Index()
         {
@@ -25,7 +27,7 @@ namespace CLCMinesweeperApp.Controllers
         {
             if (difficulty.Equals("1"))
             {
-                Board.Difficulty = 33;
+                Board.Difficulty = 2;
 
             }
             else if (difficulty.Equals("2"))
@@ -44,20 +46,79 @@ namespace CLCMinesweeperApp.Controllers
 
         [HttpPost]
 
+        public ActionResult ContinueGame(string continueBtn)
+        {
+            if(continueBtn.Equals("1"))
+            {
+                Environment.Exit(0);
+            }
+            return View("Difficulty");
+            
+        }
+
+        [HttpPost]
+
+        public ActionResult onRightClick(string Button)
+        {
+            string[] strArr = Button.Split('|');
+            int row = int.Parse(strArr[0]);
+            int col = int.Parse(strArr[1]);
+            board.Grid[row, col].Flag = true;
+            return View("Gameboard", board);
+        }
+
+        [HttpPost]
+
         public ActionResult OnClick(string button)
         {
             
             string[] strArr = button.Split('|');
             int row = int.Parse(strArr[0]);
             int col = int.Parse(strArr[1]);
+            int currentLiveCount = 0;
+            int currentVisitedCount = 0;
+
 
             if (board.Grid[row, col].Live) {
-                board.Grid[row, col].Visited = true;
+                foreach(var cell in board.Grid)
+                {
+                    cell.Visited = true;
+                    Board.GameOver = true;
+                    
+                }
+                
                 return View("Gameboard", board);
             }
             else
             {
                 floodFill(row, col);
+            }
+            foreach (var cell in board.Grid)
+            {
+                if (cell.Live)
+                {
+                    currentLiveCount += 1;
+                }
+                if (cell.Visited)
+                {
+                    currentVisitedCount += 1;
+                }
+            }
+            if(currentVisitedCount > visitedCount)
+            {
+                visitedCount = visitedCount + (currentVisitedCount - liveCount);
+            }
+            if(currentLiveCount > liveCount)
+            {
+                liveCount = liveCount + (currentLiveCount - liveCount);
+            }
+            if(visitedCount == (144 - liveCount))
+            {
+                foreach(var cell in board.Grid)
+                {
+                    cell.Visited = true;
+                    Board.GameOver = true;
+                }
             }
 
             return View("GameBoard", board);
@@ -79,6 +140,7 @@ namespace CLCMinesweeperApp.Controllers
                     cell.Live = false;
                     cell.Visited = false;
                     cell.Neighbors = 0;
+                    cell.Flag = false;
                     board.Grid[i, j] = cell;
                 }
             }

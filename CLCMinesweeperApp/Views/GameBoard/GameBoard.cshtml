@@ -1,8 +1,18 @@
 ﻿@model CLCMinesweeperApp.Models.Board
 
+
 @{
     ViewBag.Title = "Index";
+
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "gameEnd"
+    };
 }
+
+
 
 
 <style>
@@ -58,10 +68,12 @@
 
 <html>
 <head>
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>GameBoard</title>
     <style>
-        .button {
+        .game-button {
             background-color: lightblue;
             border: none;
             width: 50px;
@@ -77,10 +89,34 @@
             height: 30px
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            $(document).contextmenu(function () {
+                return false;
+            });
+            $(".game-button").mousedown(function (event) {
+                if (event.which == 3) {
+                    console.log("event 3. right click");
+                    console.log(this.getAttribute("value"));
+
+                    $.post('@Url.Action("OnRightClick", "GameBoard")', { button: this.getAttribute("value") }, function (data) {
+
+                        console.log(data);
+                        $("body").html(data);
+
+                    });
+                }
+            });
+        });
+            
+    </script>
 </head>
 <body>
     <h2 align="center">Welcome and good luck!</h2>
-    <div align="center" onmousedown="WhichButton(event)">
+
+    <div align="center" class="Gameboard" id="Gameboard">
+
+
         <table cellpadding="0" cellspacing="0" width="12" border="0">
 
             @{
@@ -93,13 +129,26 @@
                         {
 
                             <td>
-                                @using (Html.BeginForm("OnClick", "GameBoard", FormMethod.Post))
+                                @using (Ajax.BeginForm("OnClick", "GameBoard", ajaxOptions))
                                 {
 
-                                    <button class="button" align="center" type="submit" name="button" value="@Model.Grid[i, j].Row.ToString()|@Model.Grid[i, j].Column.ToString()">
-                                        @if (Model.Grid[i, j].Visited && Model.Grid[i, j].Live)
+                                    <button class="game-button" align="center" type="submit" name="button" value="@Model.Grid[i, j].Row.ToString()|@Model.Grid[i, j].Column.ToString()">
+
+
+                                        @if (Model.Grid[i, j].Flag == true)
                                         {
+                                            <img class="image" align="middle" src="~/Images/flag_icon.png" />
+                                        }
+
+                                        else if (Model.Grid[i, j].Visited && Model.Grid[i, j].Live)
+                                        {
+                                            <!--Need to add an ending phase shoulda  bomb get clicked on.-->
+
                                             <img class="image" align="middle" src="~/Images/minesweeper bomb.png" />
+
+
+                                            // @Html.ViewBag("~/Views/Gameboard/Difficulty.cshtml");
+
                                         }
                                         else if (Model.Grid[i, j].Visited)
                                         {
@@ -108,7 +157,7 @@
                                                 @Model.Grid[i, j].Neighbors.ToString();
                                             }
 
-
+                                            <!--Winning condition needs to be added-->
                                         }
                                     </button>
                                 }
@@ -126,7 +175,19 @@
 
             }
         </table>
+
     </div>
+
+    @{
+
+        if (CLCMinesweeperApp.Models.Board.GameOver)
+        {
+            <div>
+                @Html.Partial("~/Views/GameBoard/_GameEnd.cshtml")
+            </div>
+        }
+    }
+
 </body>
 </html>
 
