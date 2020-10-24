@@ -1,9 +1,13 @@
-﻿using CLCMinesweeperApp.Models;
+﻿using CLCMinesweeperApp.GameServices;
+using CLCMinesweeperApp.Models;
+using CLCMinesweeperApp.Services.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace CLCMinesweeperApp.Controllers
 {
@@ -18,7 +22,22 @@ namespace CLCMinesweeperApp.Controllers
         public ActionResult Index()
         {
 
-            return View("Difficulty");
+            return View("LoadGame");
+        }
+
+        [HttpPost]
+
+        public ActionResult LoadGameClick(string gameTypeBtn)
+        {
+            if (gameTypeBtn.Equals("0"))
+            {
+                return View("Difficulty");
+            }
+            else
+            {
+                //some logic here to call loadGame() service to pass the board to GameBoard View.
+                return View("Game", board);
+            }
         }
 
         [HttpPost]
@@ -41,7 +60,7 @@ namespace CLCMinesweeperApp.Controllers
 
             }
             SetGameBoard();
-            return View("GameBoard", board);
+            return View("Game", board);
         }
 
         [HttpPost]
@@ -56,15 +75,34 @@ namespace CLCMinesweeperApp.Controllers
             
         }
 
+         [HttpPost]
+
+        public ActionResult SaveGame()
+        {
+            
+            List<Cell> gameCells = new List<Cell>();
+            foreach (var cell in board.Grid)
+            {
+                gameCells.Add(cell);
+            }
+
+
+            Service1Client client = new Service1Client("Service1");
+
+            bool success = client.SaveGame(JsonConvert.SerializeObject(gameCells));
+
+            return View("Results");
+        }
+
         [HttpPost]
 
-        public ActionResult onRightClick(string Button)
+        public ActionResult onRightClick(string button)
         {
-            string[] strArr = Button.Split('|');
+            string[] strArr = button.Split('|');
             int row = int.Parse(strArr[0]);
             int col = int.Parse(strArr[1]);
             board.Grid[row, col].Flag = true;
-            return View("Gameboard", board);
+            return PartialView("_GameBoard", board);
         }
 
         [HttpPost]
@@ -87,7 +125,7 @@ namespace CLCMinesweeperApp.Controllers
                     
                 }
                 
-                return View("Gameboard", board);
+                return PartialView("_GameBoard", board);
             }
             else
             {
@@ -121,7 +159,7 @@ namespace CLCMinesweeperApp.Controllers
                 }
             }
 
-            return View("GameBoard", board);
+            return PartialView("_Gameboard", board);
         }
 
         public void SetGameBoard()

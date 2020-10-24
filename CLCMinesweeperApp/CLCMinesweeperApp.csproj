@@ -44,6 +44,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -88,6 +93,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\GameServices\Service1.disco" />
+    <None Include="Connected Services\GameServices\configuration91.svcinfo" />
+    <None Include="Connected Services\GameServices\configuration.svcinfo" />
+    <None Include="Connected Services\GameServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -122,6 +134,13 @@
     <Content Include="Planning and Design\Week 5\CST-247-RS-SprintBurnDown - W5.xlsx" />
     <Content Include="Planning and Design\Week 5\CST-247-RS-SprintProductLog.xlsx" />
     <Content Include="Planning and Design\Week 5\CST-247-RS-NAP-ProjectStatusDesignReport - W5.docx" />
+    <None Include="Connected Services\GameServices\Service1.wsdl" />
+    <None Include="Connected Services\GameServices\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameServices\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -141,6 +160,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\GameServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\GameBoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -155,6 +179,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Business\SecurityService.cs" />
     <Compile Include="Services\Business\UserService.cs" />
+    <Compile Include="Services\Data\GameDAO.cs" />
+    <Compile Include="Services\Data\GameObject.cs" />
     <Compile Include="Services\Data\SecurityDAO.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +193,12 @@
     <Content Include="Views\Login\LoginFailed.cshtml" />
     <Content Include="Views\Registration\RegistrationComplete.cshtml" />
     <Content Include="Views\Registration\RegistrationFailed.cshtml" />
-    <Content Include="Views\GameBoard\GameBoard.cshtml" />
+    <Content Include="Views\GameBoard\Game.cshtml" />
     <Content Include="Views\GameBoard\Difficulty.cshtml" />
     <Content Include="Views\GameBoard\_GameEnd.cshtml" />
+    <Content Include="Views\GameBoard\LoadGame.cshtml" />
+    <Content Include="Views\GameBoard\_GameBoard.cshtml" />
+    <Content Include="Views\GameBoard\Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,6 +209,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\GameServices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
